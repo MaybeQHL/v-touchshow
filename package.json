@@ -1,6 +1,6 @@
 {
-  "name": "v-touchshow",
-  "version": "1.0.0",
+  "name": "@maybecode/v-touchshow",
+  "version": "1.0.1",
   "main": "./dist-lib/v-touchshow.umd.js",
   "module": "./dist-lib/v-touchshow.es.js",
   "exports": {
@@ -46,8 +46,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitee.com:null_639_5368/v-touchshow.git"
+    "url": "https://github.com/MaybeQHL/v-touchshow.git"
   },
+  "homepage": "https://github.com/MaybeQHL/v-touchshow",
   "keywords": [
     "vue",
     "vue2",
