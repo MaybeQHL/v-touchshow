@@ -5,20 +5,40 @@
     <m-panel title="上下滑动">
       <div class="block block1" v-touchshow:swipeup="onSwipeup" v-touchshow:swipedown="onSwipedown">
         <div class="block-top">
-          <img width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <img
+            width="100"
+            @click="clickImg(1)"
+            height="100"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
         </div>
         <div class="block-btm">
-          <img width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <img
+            @click="clickImg(2)"
+            width="100"
+            height="100"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
         </div>
       </div>
     </m-panel>
     <m-panel title="双指缩放和放大">
       <div class="block block2" v-touchshow:pinchin="onPinchin" v-touchshow:pinchout="onPinchout">
         <div class="block-top">
-          <img width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <img
+            @click="clickImg(3)"
+            width="100"
+            height="100"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
         </div>
         <div class="block-btm">
-          <img width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <img
+            @click="clickImg(4)"
+            width="100"
+            height="100"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
         </div>
       </div>
     </m-panel>
@@ -31,7 +51,7 @@ import { Callback } from '../';
 
 
 const onSwipeup: Callback = (e, el) => {
-  el.style.transform = "translateY(-30vw)"
+  el.style.transform = "translateY(-100px)"
 }
 const onSwipedown: Callback = (e, el) => {
 
@@ -43,7 +63,9 @@ const onPinchin: Callback = (e, el) => {
 const onPinchout: Callback = (e, el) => {
   el.style.transform = "scale(0.5)"
 }
-
+const clickImg = (num: number) => {
+  alert(`image ${num} click!`)
+}
 
 
 </script>
@@ -57,9 +79,9 @@ const onPinchout: Callback = (e, el) => {
   // position: fixed;
   // left: 0;
   // bottom: -30vw;
-  width: 80vw;
-  height: 60vw;
-
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
