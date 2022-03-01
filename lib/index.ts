@@ -18,17 +18,31 @@ const caches: {
 
 
 function init(el: HTMLElement, binding: DirectiveBinding<Callback>) {
-    let at = new AnyTouch(el);
-    let elKey = 'tkey_' + new Date().getTime();
-    el.dataset['tkey'] = elKey as any;
+    let at: AnyTouch;
+    let elKey: string;
+    const arg = binding.arg;
+    const opts = binding.value;
+
+    const item = caches.find(it => it.key == el.dataset.tkey);
+    if (el.dataset.tkey && item) {
+        at = item.touch;
+        elKey = item.key;
+    }
+    else {
+        const config = Object.assign({
+            // tParam1: ''
+        }, typeof opts == 'object' ? opts : {});
+        at = new AnyTouch(el, config as any);
+        elKey = 'tkey_' + new Date().getTime();
+        el.dataset['tkey'] = elKey as any;
+    }
 
     caches.push({
         key: elKey,
         touch: at
     });
 
-    const arg = binding.arg;
-    const opts = binding.value;
+
 
     console.log(arg, opts);
 

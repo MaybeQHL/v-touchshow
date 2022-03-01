@@ -54,7 +54,7 @@ Vue.use(VTouchshow);
 
 ## 具体使用
 
-## 手势识别器支持事件对照表
+### 手势识别器支持事件对照表
 
 | 识别器     | 事件名                                                            | 说明                                                  |
 | ---------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
@@ -64,6 +64,14 @@ Vue.use(VTouchshow);
 | **swipe**  | swipe / swipeup / swipedown / swiperight / swipeleft              | 快划 / 不同方向快划                                   |
 | **pinch**  | pinch / pinchstart / pinchmove / pinchend / pinchin /pinchout     | 缩放 / 缩放开始 / 缩放进行中 / 缩放结束 / 放大 / 缩小 |
 | **rotate** | rotate / rotatestart / rotatemove / rotateend                     | 旋转 / 旋转开始 / 旋转进行中 / 旋转结束               |
+
+### 可传入配置兼容any-touch
+```
+<div
+    v-touchshow="config"
+ >
+</div>
+```
 
 ### 1. 设置过渡动画
 ```
@@ -102,7 +110,7 @@ const onSwipeup: Callback = (e, el) => {
 
 如果移动端非要使用 click 做如下设置
 
-```const at = new AnyTouch(el, { preventDefault: false });```
+```v-touchshow="{ preventDefault: false }"```
 ## Browsers support
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="42px" height="42px" />](https://godban.github.io/browsers-support-badges/)</br>Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="42px" height="42px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="42px" height="42px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="42px" height="42px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
