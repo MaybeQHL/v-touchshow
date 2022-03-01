@@ -5,40 +5,20 @@
     <m-panel title="上下滑动">
       <div class="block block1" v-touchshow:swipeup="onSwipeup" v-touchshow:swipedown="onSwipedown">
         <div class="block-top">
-          <img
-            width="100"
-            @click="clickImg(1)"
-            height="100"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
+          <img @tap="clickImg(1)" width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
         </div>
         <div class="block-btm">
-          <img
-            @click="clickImg(2)"
-            width="100"
-            height="100"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
+          <img @tap="clickImg(2)" width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
         </div>
       </div>
     </m-panel>
     <m-panel title="双指缩放和放大">
       <div class="block block2" v-touchshow:pinchin="onPinchin" v-touchshow:pinchout="onPinchout">
         <div class="block-top">
-          <img
-            @click="clickImg(3)"
-            width="100"
-            height="100"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
+          <img @tap="clickImg(3)" width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
         </div>
         <div class="block-btm">
-          <img
-            @click="clickImg(4)"
-            width="100"
-            height="100"
-            src="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
+          <img @tap="clickImg(4)" width="100" height="100" src="https://img.yzcdn.cn/vant/cat.jpeg" />
         </div>
       </div>
     </m-panel>
@@ -67,9 +47,19 @@ const clickImg = (num: number) => {
   alert(`image ${num} click!`)
 }
 
-
 </script>
 <style scoped lang="scss">
+.page {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+.block {
+  // position: fixed;
+  // left: 0;
+  // bottom: -30vw;
+  width: 300px;
+}
 .page {
   width: 100vw;
   height: 100vh;
