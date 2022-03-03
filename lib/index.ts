@@ -23,6 +23,8 @@ function init(el: HTMLElement, binding: DirectiveBinding<Callback>) {
     const arg = binding.arg;
     const opts = binding.value;
 
+    // console.log(arg, opts);
+
     const item = caches.find(it => it.key == el.dataset.tkey);
     if (el.dataset.tkey && item) {
         at = item.touch;
@@ -37,23 +39,18 @@ function init(el: HTMLElement, binding: DirectiveBinding<Callback>) {
         el.dataset['tkey'] = elKey as any;
     }
 
+    if (typeof opts == 'function') {
+        at.on(arg as any, (e: Event) => {
+            opts(e, el);
+        })
+    }
+
+
     caches.push({
         key: elKey,
         touch: at
     });
 
-
-
-    console.log(arg, opts);
-
-    // Object.keys(opts).forEach(eName => {
-    //     at.on(eName as any, (e: Event) => {
-    //         opts[eName](e, el);
-    //     })
-    // })
-    at.on(arg as any, (e: Event) => {
-        opts(e, el);
-    })
 }
 
 function install(app: App, options: any) {
