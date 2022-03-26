@@ -11,23 +11,32 @@ import { Callback } from '../types'
 
 import { App, DirectiveBinding } from "vue-demi";
 
-const caches = new WeakMap<HTMLElement, AnyTouch>()
+const caches: {
+    key: string,
+    touch: AnyTouch
+}[] = []
 
 
 function init(el: HTMLElement, binding: DirectiveBinding<Callback>) {
     let at: AnyTouch;
+    let elKey: string;
     const arg = binding.arg;
     const opts = binding.value;
 
-    const reAt = caches.get(el);
-    if (reAt) {
-        at = reAt;
+    // console.log(arg, opts);
+
+    const item = caches.find(it => it.key == el.dataset.tkey);
+    if (el.dataset.tkey && item) {
+        at = item.touch;
+        elKey = item.key;
     }
     else {
         const config = Object.assign({
             // tParam1: ''
         }, typeof opts == 'object' ? opts : {});
         at = new AnyTouch(el, config as any);
+        elKey = 'tkey_' + new Date().getTime();
+        el.dataset['tkey'] = elKey as any;
     }
 
     if (typeof opts == 'function') {
@@ -36,7 +45,11 @@ function init(el: HTMLElement, binding: DirectiveBinding<Callback>) {
         })
     }
 
-    caches.set(el, at)
+
+    caches.push({
+        key: elKey,
+        touch: at
+    });
 
 }
 
@@ -47,12 +60,13 @@ function install(app: App, options: any) {
         },
         unmounted(el, binding) {
 
-            const reAt = caches.get(el)
-            if (reAt) {
-                reAt.destroy();
-                caches.delete(el)
+            const item = caches.find(it => it.key == el.dataset.tkey)
+            if (item) {
+                item.touch.destroy();
+                const index = caches.findIndex(it => it.key == item.key);
+                caches.splice(index, 1);
             }
-            reAt && console.log(`[v-touchshow:${el}]:touchshow events destroyed`)
+            item && console.log(`[v-touchshow:${item.key}]:touchshow events destroyed`)
         }
     });
 }
